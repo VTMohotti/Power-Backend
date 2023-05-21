@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
 const WorkoutSchema = new mongoose.Schema({
-  workoutId: {
-    type: Number,
-  },
   workoutName: {
     type: String,
   },
@@ -21,6 +18,15 @@ const WorkoutSchema = new mongoose.Schema({
   },
   workoutDescription: {
     type: String,
+  },
+  workoutImgUrl: {
+    type: String,
+  },
+  workoutVideoUlr: {
+    type: String,
+  },
+  workoutRepCount: {
+    type: Number,
   },
   createdAt: {
     type: Date,
