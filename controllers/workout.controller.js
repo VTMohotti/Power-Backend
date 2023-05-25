@@ -1,15 +1,28 @@
 const Workout = require("../models/workout.model");
 
+// const getWorkout = async (req, res) => {
+//   try {
+//     const workouts = await Workout.find();
+//     res.json(workouts);
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ error: "An error occurred while retrieving the workouts" });
+//   }
+// };
+
 const getWorkout = async (req, res) => {
   try {
     const workouts = await Workout.find();
-    res.json(workouts);
+    const response = { workout: workouts };
+    res.json(response);
   } catch (error) {
     res
       .status(500)
       .json({ error: "An error occurred while retrieving the workouts" });
   }
 };
+
 
 // const getWorkout = async (req, res) => {
 //   try {
@@ -44,21 +57,50 @@ const getWorkoutById = async (req, res) => {
 
 //   module.exports = getWorkoutById;
 
+// const createWorkout = async (req, res) => {
+//   try {
+//     const workout = new Workout({
+//       workoutName: req.body.workoutName,
+//       workoutTime: req.body.workoutTime,
+//       workoutLevel: req.body.workoutLevel,
+//       workoutMuscle: req.body.workoutMuscle,
+//       workoutEquipment: req.body.workoutEquipment,
+//       workoutDescription: req.body.workoutDescription,
+//       exercises: req.body.exercises,
+//       createdAt: req.body.createdAt,
+//     });
+
+//     const savedWorkout = await workout.save();
+//     res.status(201).json(savedWorkout);
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ error: "An error occurred while creating the workout" });
+//   }
+// };
+
+// const createWorkout = async (req, res) => {
+//   try {
+//     const workoutData = { ...req.body, createdAt: new Date() };
+//     const workout = new Workout(workoutData);
+
+//     const savedWorkout = await workout.save();
+//     res.status(201).json({ workout: [savedWorkout] });
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ error: "An error occurred while creating the workout" });
+//   }
+// };
+
 const createWorkout = async (req, res) => {
   try {
-    const workout = new Workout({
-      workoutName: req.body.workoutName,
-      workoutTime: req.body.workoutTime,
-      workoutLevel: req.body.workoutLevel,
-      workoutMuscle: req.body.workoutMuscle,
-      workoutEquipment: req.body.workoutEquipment,
-      workoutDescription: req.body.workoutDescription,
-      exercises: req.body.exercises,
-      createdAt: req.body.createdAt,
-    });
+    const workoutData = { ...req.body, createdAt: new Date() };
+    const workout = new Workout(workoutData);
 
     const savedWorkout = await workout.save();
-    res.status(201).json(savedWorkout);
+    const response = [{ ...savedWorkout }];
+    res.status(201).json({ workout: response });
   } catch (error) {
     res
       .status(500)
