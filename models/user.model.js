@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-  userId: {
-    type: Number,
-  },
   userEmail: {
     type: String,
   },
@@ -17,7 +14,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
   },
   userAge: {
-    type: Date,
+    type: Number,
   },
   userHeight: {
     type: Number,

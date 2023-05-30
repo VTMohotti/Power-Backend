@@ -2,8 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const ExerciseRouter = require("./routes/exercise.route");
 const WorkoutRouter = require("./routes/workout.route");
+const UserRouter = require("./routes/user.route");
 
 dotenv.config();
 
@@ -14,8 +14,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api/v1/exercise", ExerciseRouter);
 app.use("/api/v1/workout", WorkoutRouter);
+app.use("/api/v1/user", UserRouter);
 
 mongoose
   .connect(process.env.MONGODB_URL, {
